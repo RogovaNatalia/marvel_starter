@@ -7,9 +7,9 @@ import useMarvelService from "../../services/MarvelService";
 import "./charList.scss";
 
 const CharList = (props) => {
-  const [charList, setChatList] = useState([]);
+  const [charList, setCharList] = useState([]);
   const [newItemLoading, setNewItemLoading] = useState(false);
-  const [offset, setOffset] = useState(210);
+  const [offset, setOffset] = useState(0);
   const [charEnded, setCharEnded] = useState(false);
 
   const { loading, error, getAllCharacters } = useMarvelService();
@@ -29,7 +29,7 @@ const CharList = (props) => {
       ended = true;
     }
 
-    setChatList((chaarList) => [...charList, ...newCharList]);
+    setCharList((charList) => [...charList, ...newCharList]);
     setNewItemLoading((newItemLoading) => false);
     setOffset((offset) => offset + 9);
     setCharEnded((charEnded) => ended);
@@ -77,6 +77,7 @@ const CharList = (props) => {
         </li>
       );
     });
+
     return <ul className="char__grid">{items}</ul>;
   }
 
